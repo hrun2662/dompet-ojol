@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <meta name="theme-color" content="#0B0F1A"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2300AA13'/%3E%3Cstop offset='0.5' stop-color='%235B8DEF'/%3E%3Cstop offset='1' stop-color='%23EE4D2D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='34' font-size='34' text-anchor='middle' dominant-baseline='central'%3E%F0%9F%9B%B5%3C/text%3E%3C/svg%3E"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2300AA13'/%3E%3Cstop offset='0.5' stop-color='%235B8DEF'/%3E%3Cstop offset='1' stop-color='%23EE4D2D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='34' font-size='34' text-anchor='middle' dominant-baseline='central'%3E%F0%9F%9B%B5%3C/text%3E%3C/svg%3E"/>
 <title>Dompet Ojol — Pencatatan Keuangan Driver Online</title>
 <meta name="description" content="Aplikasi pencatatan penghasilan & pengeluaran untuk driver ojek online: Gojek, ShopeeFood, Maxim, InDrive, Grab."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -117,7 +119,11 @@ a{color:inherit;text-decoration:none}
 #app-header{height:var(--nav-h);background:rgba(14,19,34,.85);backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0;z-index:50}
-.hl{display:flex;align-items:center;gap:10px;min-width:0}
+.hl{display:flex;align-items:center;gap:10px;min-width:0;cursor:pointer;border-radius:10px;transition:.2s;padding:4px 6px;margin:-4px -6px}
+.hl:hover{background:rgba(91,141,239,.1)}
+.hl:active{transform:scale(.97)}
+.hl:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.uavatar:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .hl .ic{width:36px;height:36px;border-radius:11px;background:var(--grad-brand);
   display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .hl .nm{font-family:'Sora';font-size:17px;font-weight:800;white-space:nowrap}
@@ -149,6 +155,7 @@ a{color:inherit;text-decoration:none}
 .wrap{max-width:1000px;margin:0 auto;width:100%;padding:22px 16px 28px}
 @media(max-width:768px){.wrap{padding-bottom:calc(var(--bottom-h) + 20px)}}
 @media(min-width:769px){#bottom-nav{display:none!important}}
+@media(max-width:768px){#top-nav{display:none!important}}
 .page{display:none;animation:fade .3s ease}
 .page.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -290,6 +297,34 @@ a{color:inherit;text-decoration:none}
 .crow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:680px){.crow{grid-template-columns:1fr}}
 
+/* ═══════════════════ PROFILE ═══════════════════ */
+.pf-head{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,var(--card),var(--card2));
+  border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:8px;position:relative;overflow:hidden}
+.pf-head::after{content:'👤';position:absolute;right:-8px;bottom:-20px;font-size:96px;opacity:.05}
+.pf-av{width:64px;height:64px;border-radius:50%;border:2px solid var(--accent);background:var(--card2);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:26px;font-weight:800;
+  color:var(--accent);flex-shrink:0;box-shadow:0 4px 16px var(--accent-glow)}
+.pf-av img{width:100%;height:100%;object-fit:cover}
+.pf-meta{min-width:0}
+.pf-name{font-family:'Sora';font-size:20px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pf-email{font-size:13px;color:var(--muted2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pf-since{font-size:11px;color:var(--muted);margin-top:5px}
+.pf-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 4px;
+  border-bottom:1px solid var(--border);font-size:13px;color:var(--muted2)}
+.pf-row b{font-family:'Sora';font-size:14px;color:var(--text)}
+.pf-item{display:flex;align-items:center;gap:13px;width:100%;background:none;border:none;cursor:pointer;
+  padding:13px 11px;border-radius:var(--radius-sm);transition:.15s;text-align:left;color:var(--text)}
+.pf-item:hover{background:var(--card2)}
+.pf-item .pf-ic{width:38px;height:38px;border-radius:11px;background:var(--bg2);display:flex;align-items:center;
+  justify-content:center;font-size:18px;flex-shrink:0}
+.pf-it{flex:1;min-width:0}
+.pf-it b{display:block;font-size:13px;font-weight:700}
+.pf-it small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.pf-arr{color:var(--muted);font-size:20px;font-weight:300}
+.pf-item.danger .pf-ic{background:rgba(244,63,94,.12)}
+.pf-item.danger b{color:var(--expense)}
+.pf-foot{text-align:center;font-size:11px;color:var(--muted);margin-top:18px;line-height:1.6;padding:0 12px}
+
 /* ═══════════════════ FOOTER ═══════════════════ */
 footer{border-top:1px solid var(--border);background:var(--surface);padding:18px 16px;text-align:center;margin-top:8px}
 footer .fcontent{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:6px}
@@ -377,10 +412,10 @@ footer .ftiny{font-size:11px;color:var(--muted);opacity:.7}
 <!-- ══════════ APP ══════════ -->
 <div id="screen-app" class="screen">
   <header id="app-header">
-    <div class="hl"><div class="ic">🛵</div><div class="nm">Dompet <span>Ojol</span></div></div>
+    <div class="hl" id="brand-home" role="button" tabindex="0" title="Muat ulang halaman" aria-label="Dompet Ojol — muat ulang"><div class="ic">🛵</div><div class="nm">Dompet <span>Ojol</span></div></div>
     <div class="hr">
       <span class="uname" id="uname"></span>
-      <div class="uavatar" id="uavatar"></div>
+      <div class="uavatar" id="uavatar" role="button" tabindex="0" title="Buka profil" aria-label="Buka profil" onclick="switchPage('profile')"></div>
       <button class="btn-out" onclick="askLogout()">Keluar</button>
     </div>
   </header>
@@ -391,6 +426,7 @@ footer .ftiny{font-size:11px;color:var(--muted);opacity:.7}
     <button data-page="expense" onclick="switchPage('expense')">🧾 Pengeluaran</button>
     <button data-page="history" onclick="switchPage('history')">📋 Riwayat</button>
     <button data-page="laporan" onclick="switchPage('laporan')">📈 Laporan</button>
+    <button data-page="profile" onclick="switchPage('profile')">👤 Profil</button>
   </nav>
 
   <div id="main">
@@ -488,7 +524,10 @@ footer .ftiny{font-size:11px;color:var(--muted);opacity:.7}
       <div id="page-laporan" class="page">
         <div class="fbar" style="margin-bottom:16px">
           <span style="color:var(--muted);font-size:12px;white-space:nowrap;flex:0">Periode:</span>
-          <select id="rp-period" onchange="renderLaporan()"><option value="today">Hari Ini</option><option value="week">7 Hari Terakhir</option><option value="month" selected>30 Hari Terakhir</option><option value="all">Semua Waktu</option></select>
+          <select id="rp-period" onchange="onPeriodChange()"><option value="today">Hari Ini</option><option value="week">7 Hari Terakhir</option><option value="month" selected>30 Hari Terakhir</option><option value="all">Semua Waktu</option><option value="custom">Pilih Tanggal</option></select>
+          <input type="date" id="rp-from" onchange="onRangeChange()" aria-label="Dari tanggal"/>
+          <input type="date" id="rp-to" onchange="onRangeChange()" aria-label="Sampai tanggal"/>
+          <button class="btn btn-sec btn-sm" onclick="resetLaporan()">Reset</button>
         </div>
         <div class="sgrid" id="rp-sum"></div>
         <div class="crow">
@@ -497,6 +536,41 @@ footer .ftiny{font-size:11px;color:var(--muted);opacity:.7}
         </div>
         <div class="cwrap"><div class="ctitle">📈 Penghasilan vs Pengeluaran Harian</div><div class="cbox" style="height:260px"><canvas id="cDaily"></canvas></div></div>
         <div class="cwrap"><div class="ctitle">🏆 Jumlah Trip per Platform</div><div class="cbox" style="height:210px"><canvas id="cTrip"></canvas></div></div>
+      </div>
+
+      <!-- PROFILE -->
+      <div id="page-profile" class="page">
+        <div class="pf-head">
+          <div class="pf-av" id="pf-avatar"></div>
+          <div class="pf-meta">
+            <div class="pf-name" id="pf-name">Driver</div>
+            <div class="pf-email" id="pf-email"></div>
+            <div class="pf-since" id="pf-since"></div>
+          </div>
+        </div>
+
+        <div class="stitle">Statistik Akun</div>
+        <div class="sgrid" id="pf-stats"></div>
+
+        <div class="stitle">Rekap Sepanjang Waktu</div>
+        <div class="fcard" style="padding:16px">
+          <div class="pf-row"><span>💰 Total penghasilan</span><b id="pf-tin" style="color:var(--income)">Rp 0</b></div>
+          <div class="pf-row"><span>🧾 Total pengeluaran</span><b id="pf-tex" style="color:var(--expense)">Rp 0</b></div>
+          <div class="pf-row"><span>📈 Keuntungan bersih</span><b id="pf-net" style="color:var(--accent)">Rp 0</b></div>
+          <div class="pf-row"><span>🛵 Total trip</span><b id="pf-trips">0</b></div>
+          <div class="pf-row"><span>🏆 Platform teratas</span><b id="pf-top">—</b></div>
+          <div class="pf-row" style="border:none"><span>📅 Hari paling aktif</span><b id="pf-best">—</b></div>
+        </div>
+
+        <div class="stitle">Pengaturan & Data</div>
+        <div class="fcard" style="padding:8px">
+          <button class="pf-item" onclick="switchPage('laporan')"><span class="pf-ic">📈</span><div class="pf-it"><b>Lihat Laporan</b><small>Grafik penghasilan, pengeluaran & tren</small></div><span class="pf-arr">›</span></button>
+          <button class="pf-item" onclick="exportCSV()"><span class="pf-ic">📤</span><div class="pf-it"><b>Ekspor Data (CSV)</b><small>Unduh seluruh transaksi ke file Excel</small></div><span class="pf-arr">›</span></button>
+          <button class="pf-item" onclick="switchPage('history')"><span class="pf-ic">📋</span><div class="pf-it"><b>Riwayat Transaksi</b><small>Telusuri & kelola semua catatan</small></div><span class="pf-arr">›</span></button>
+          <button class="pf-item danger" onclick="askLogout()"><span class="pf-ic">🚪</span><div class="pf-it"><b>Keluar dari Akun</b><small>Logout dari perangkat ini</small></div><span class="pf-arr">›</span></button>
+        </div>
+
+        <div class="pf-foot">🔒 Data kamu tersimpan aman & privat di cloud. Hanya kamu yang bisa mengaksesnya.</div>
       </div>
 
     </div><!-- /wrap -->
@@ -516,6 +590,7 @@ footer .ftiny{font-size:11px;color:var(--muted);opacity:.7}
     <button data-page="expense" onclick="switchPage('expense')"><span class="ni">🧾</span>Keluar</button>
     <button data-page="history" onclick="switchPage('history')"><span class="ni">📋</span>Riwayat</button>
     <button data-page="laporan" onclick="switchPage('laporan')"><span class="ni">📈</span>Laporan</button>
+    <button data-page="profile" onclick="switchPage('profile')"><span class="ni">👤</span>Profil</button>
   </nav>
 </div>
 
@@ -655,6 +730,7 @@ async function loadData(){
   if(error){toast('Gagal memuat: '+error.message,'err');return}
   txData=data||[];
   renderAll();renderLaporan();
+  if($('page-profile')&&$('page-profile').classList.contains('active'))renderProfile();
 }
 function subscribe(){
   if(channel)client.removeChannel(channel);
@@ -681,7 +757,7 @@ async function delTx(id){
 /* ══════════════════════════════════════════════════════════
    FORM ACTIONS
 ══════════════════════════════════════════════════════════ */
-function initDates(){const t=isoToday();['in-date','ex-date','f-from','f-to'].forEach(id=>{const e=$(id);if(e)e.value=t})}
+function initDates(){const t=isoToday();['in-date','ex-date','f-from','f-to','rp-to'].forEach(id=>{const e=$(id);if(e)e.value=t});const d=new Date();d.setDate(d.getDate()-29);const m=d.toISOString().slice(0,10);const rf=$('rp-from');if(rf)rf.value=m}
 async function addIncome(){
   const date=$('in-date').value,plat=$('in-plat').value,svc=$('in-svc').value;
   const amt=parseFloat($('in-amt').value),trip=parseInt($('in-trip').value)||1,note=$('in-note').value.trim();
@@ -722,8 +798,18 @@ function switchPage(name){
   document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===name));
   if(name==='laporan')renderLaporan();
   if(name==='history')renderHistory();
+  if(name==='profile')renderProfile();
   $('main').scrollTop=0;
 }
+
+/* logo click → muat ulang halaman */
+(function(){
+  const b=$('brand-home');if(!b)return;
+  b.addEventListener('click',()=>location.reload());
+  b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();location.reload()}});
+  const av=$('uavatar');
+  if(av)av.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();switchPage('profile')}});
+})();
 
 /* ══════════════════════════════════════════════════════════
    RENDER
@@ -777,12 +863,33 @@ function empty(i,m){return '<div class="empty"><div class="ei">'+i+'</div>'+m+'<
 /* ══════════════════════════════════════════════════════════
    LAPORAN
 ══════════════════════════════════════════════════════════ */
+function onPeriodChange(){
+  const period=$('rp-period').value;const to=isoToday();
+  if(period!=='custom'){
+    let from;
+    if(period==='today')from=to;
+    else if(period==='all')from='2000-01-01';
+    else{const d=new Date();d.setDate(d.getDate()-(period==='week'?6:29));from=d.toISOString().slice(0,10)}
+    if(period==='all'){const d=new Date();d.setDate(d.getDate()-364);$('rp-from').value=d.toISOString().slice(0,10)}
+    else $('rp-from').value=from;
+    $('rp-to').value=to;
+  }
+  renderLaporan();
+}
+function onRangeChange(){const s=$('rp-period');if(s)s.value='custom';renderLaporan()}
+function resetLaporan(){const s=$('rp-period');if(s)s.value='month';onPeriodChange()}
 function renderLaporan(){
   const period=$('rp-period')?.value||'month';
-  const to=isoToday();let from;
-  if(period==='today')from=to;
-  else if(period==='all')from='2000-01-01';
-  else{const d=new Date();d.setDate(d.getDate()-(period==='week'?6:29));from=d.toISOString().slice(0,10)}
+  let from,to;
+  if(period==='custom'){
+    from=$('rp-from')?.value||'2000-01-01';to=$('rp-to')?.value||isoToday();
+    if(from>to){const tmp=from;from=to;to=tmp}
+  }else{
+    to=isoToday();
+    if(period==='today')from=to;
+    else if(period==='all')from='2000-01-01';
+    else{const d=new Date();d.setDate(d.getDate()-(period==='week'?6:29));from=d.toISOString().slice(0,10)}
+  }
   const f=txData.filter(x=>x.date>=from&&x.date<=to);
   const inc=f.filter(x=>x.type==='income'),exp=f.filter(x=>x.type==='expense');
   const tin=inc.reduce((s,x)=>s+(+x.amount||0),0),tex=exp.reduce((s,x)=>s+(+x.amount||0),0);
@@ -815,6 +922,62 @@ function renderLaporan(){
   const tAmt=PKEYS.map(p=>inc.filter(x=>x.platform===p).reduce((s,x)=>s+(+x.trips||0),0));
   chart('cTrip',{type:'bar',data:{labels:PKEYS.map(p=>PLAT[p]),datasets:[{data:tAmt,backgroundColor:PKEYS.map(p=>PCOL[p]+'B3'),borderColor:PKEYS.map(p=>PCOL[p]),borderWidth:2,borderRadius:7}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{ticks:{color:'#7C8DAB',font:{size:11}},grid:{display:false}},y:{ticks:{...tick,stepSize:1,precision:0},grid,beginAtZero:true}},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' trip'}}}}});
 }
+
+/* ══════════════════════════════════════════════════════════
+   PROFILE
+══════════════════════════════════════════════════════════ */
+function renderProfile(){
+  if(!currentUser)return;
+  const meta=currentUser.user_metadata||{};
+  const name=meta.full_name||meta.name||currentUser.email||'Driver';
+  const first=(name.split(' ')[0]||'D');
+  setTxt('pf-name',name);
+  setTxt('pf-email',currentUser.email||'—');
+  const av=$('pf-avatar');
+  if(meta.avatar_url||meta.picture){av.innerHTML='<img src="'+esc(meta.avatar_url||meta.picture)+'" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.textContent=\''+esc(first[0]||'D').toUpperCase()+'\'">'}
+  else{av.textContent=(first[0]||'D').toUpperCase()}
+  const created=currentUser.created_at?new Date(currentUser.created_at):null;
+  setTxt('pf-since',created?'Bergabung sejak '+created.toLocaleDateString('id-ID',{year:'numeric',month:'long',day:'numeric'}):'');
+
+  const inc=txData.filter(x=>x.type==='income'),exp=txData.filter(x=>x.type==='expense');
+  const tin=inc.reduce((s,x)=>s+(+x.amount||0),0),tex=exp.reduce((s,x)=>s+(+x.amount||0),0);
+  const trips=inc.reduce((s,x)=>s+(+x.trips||0),0);
+  const days=new Set(txData.map(x=>x.date)).size;
+  // platform teratas
+  let topP='—',topV=-1;PKEYS.forEach(p=>{const v=inc.filter(x=>x.platform===p).reduce((s,x)=>s+(+x.amount||0),0);if(v>topV&&v>0){topV=v;topP=PLAT[p]}});
+  // hari paling aktif (penghasilan terbesar)
+  const byDay={};inc.forEach(x=>{byDay[x.date]=(byDay[x.date]||0)+(+x.amount||0)});
+  let bestD='—',bestV=-1;Object.keys(byDay).forEach(d=>{if(byDay[d]>bestV){bestV=byDay[d];bestD=d}});
+
+  $('pf-stats').innerHTML=
+    '<div class="scard in"><div class="sl">Total Transaksi</div><div class="sv">'+txData.length+'</div><div class="ss">tercatat</div></div>'+
+    '<div class="scard pr"><div class="sl">Hari Aktif</div><div class="sv">'+days+'</div><div class="ss">hari mencatat</div></div>'+
+    '<div class="scard tr"><div class="sl">Total Trip</div><div class="sv">'+trips+'</div><div class="ss">semua platform</div></div>'+
+    '<div class="scard '+((tin-tex)>=0?'in':'ex')+'"><div class="sl">Saldo Bersih</div><div class="sv">'+((tin-tex)<0?'- ':'')+rp(tin-tex)+'</div><div class="ss">total</div></div>';
+
+  setTxt('pf-tin',rp(tin));setTxt('pf-tex',rp(tex));
+  const net=$('pf-net');setTxt('pf-net',((tin-tex)<0?'- ':'')+rp(tin-tex));net.style.color=(tin-tex)>=0?'var(--accent)':'var(--expense)';
+  setTxt('pf-trips',trips);
+  setTxt('pf-top',topP);
+  setTxt('pf-best',bestD==='—'?'—':fmtDate(bestD)+' ('+rp(bestV)+')');
+}
+
+function exportCSV(){
+  if(!txData.length){toast('Belum ada data untuk diekspor','warn');return}
+  const head=['Tanggal','Jam','Tipe','Platform','Layanan','Kategori','Trip','Jumlah','Catatan'];
+  const rows=txData.map(x=>[
+    x.date||'',x.time||'',x.type==='income'?'Penghasilan':'Pengeluaran',
+    x.platform?(PLAT[x.platform]||x.platform):'',x.service?(SVC[x.service]||x.service):'',
+    x.category?(CAT[x.category]||x.category):'',x.trips||0,x.amount||0,(x.note||'').replace(/"/g,'""')
+  ]);
+  const csv=[head,...rows].map(r=>r.map(c=>'"'+String(c)+'"').join(',')).join('\r\n');
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='dompet-ojol-'+isoToday()+'.csv';document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(url);
+  toast('📤 Data berhasil diekspor!');
+}
+
 </script>
 </body>
 </html>
